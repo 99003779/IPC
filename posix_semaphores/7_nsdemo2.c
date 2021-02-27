@@ -11,7 +11,7 @@ int main()
 	printf("welcome..pid=%d\n",getpid());
 	sem_t *ps,*qs;    ///ppointers
 	ps=sem_open("/s1",O_CREAT, 0666, 1);  
-	//qs=sem_open("/s2",O_CREAT, 0666, 0);
+	qs=sem_open("/s2",O_CREAT, 0666, 0);
 	ret=fork();
 	if(ret==0)
 	{
@@ -31,7 +31,7 @@ int main()
 	{
 		printf("parent--hello,pid=%d,ppid=%d\n",
 			getpid(),getppid());
-			sem_wait(ps);
+            sem_wait(ps);
         sem_wait(qs);
 		// sem_wait(ps);
         for(i=1;i<=max;i++)
@@ -40,9 +40,10 @@ int main()
 			sleep(1);
 		}
 		sem_post(ps);
-		waitpid(-1,&status,0);
+		waitpid(-1,&status,1);
+        printf("child return");
 		sem_unlink("s1");
-		//sem_unlink("s2");
+		sem_unlink("s2");
 	}
 	//printf("thank you,pid=%d,ppid=%d\n",
 	//		getpid(),getppid());

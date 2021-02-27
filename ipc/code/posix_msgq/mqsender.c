@@ -9,7 +9,7 @@ int main()
 	int ret;
 	mqd_t mqid;
 	struct mq_attr attr;
-	attr.mq_msgsize=256;
+	attr.mq_msgsize=512;
 	attr.mq_maxmsg=10;
 	mqid=mq_open("/mque",O_WRONLY|O_CREAT,0666,&attr);
 	//mqid=mq_open("/mque",O_WRONLY|O_CREAT,0666,NULL);

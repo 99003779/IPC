@@ -18,9 +18,9 @@ int main()
 		perror("open");
 		exit(1);
 	}
-    ftruncate(fd, filesz);
+    ftruncate(fd, filesz);  //point to 4096 bytes of memory
 	void *pbase;
-	pbase=mmap(0,filesz, PROT_WRITE, MAP_SHARED,fd,offset);
+	pbase=mmap(0,filesz, PROT_WRITE, MAP_SHARED,fd,offset);  ///pbase is return pointer
 	if(pbase==MAP_FAILED)
 	{
 		fprintf(stderr,"mapping failed\n");

@@ -1,4 +1,7 @@
 #include<unistd.h>
+#include <string.h>
+#include<stdlib.h>
+
 
 int main()
 {
@@ -27,7 +30,7 @@ int main()
 	{
 		close(fds[0]);	//no read
         //some delay
-		char str[]="Hello FIFO";
+		char str[]="Hello FIFO\n";
 		int len=strlen(str);
 		nbytes=write(fds[1],str,len);
 		//error handling

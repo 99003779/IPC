@@ -20,7 +20,7 @@ int main()
 	}
     ftruncate(fd, filesz);
 	void *pbase;
-	pbase=mmap(0,filesz, PROT_READ, MAP_SHARED,fd,offset);
+	pbase=mmap(0,filesz, PROT_READ, MAP_SHARED,fd,offset);  ///memory allocated by mmap
 	if(pbase==MAP_FAILED)
 	{
 		fprintf(stderr,"mapping failed\n");
@@ -30,7 +30,7 @@ int main()
 	char buf[64];
     strncpy(buf,pbase,10);
 	printf("buf=%s\n",buf);
-	strcpy(buf,pbase+10);
+	strcpy(buf,pbase+10);   ///pbase to buf and then printing 
 	printf("buf=%s\n",buf);
 	munmap(pbase,filesz);
     //shm_unlink("/shm1");
